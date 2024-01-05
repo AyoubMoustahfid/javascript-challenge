@@ -85,11 +85,11 @@ Immutable Arguments: Input arguments should be immutable to ensure accurate cach
 
 ## Example 1:
 
--> Input: 
+* Input: 
 getInputs = () => [[2,2],[2,2],[1,2]]
 fn = function (a, b) { return a + b; }
--> Output: [{"val":4,"calls":1},{"val":4,"calls":1},{"val":3,"calls":2}]
--> Explanation:
+* Output: [{"val":4,"calls":1},{"val":4,"calls":1},{"val":3,"calls":2}]
+* Explanation:
 const inputs = getInputs();
 const memoized = memoize(fn);
 for (const arr of inputs) {
@@ -102,18 +102,19 @@ For the inputs of (1, 2): 1 + 2 = 3, and it required another call to fn() for a 
 
 ## Example 2:
 
--> Input: 
+* Input: 
 getInputs = () => [[{},{}],[{},{}],[{},{}]] 
 fn = function (a, b) { return ({...a, ...b}); }
--> Output: [{"val":{},"calls":1},{"val":{},"calls":2},{"val":{},"calls":3}]
--> Explanation:
+* Output: [{"val":{},"calls":1},{"val":{},"calls":2},{"val":{},"calls":3}]
+* Explanation:
 Merging two empty objects will always result in an empty object. It may seem like there should only be 1 call to fn() because of cache-hits, however none of those objects are === to each other.
 
 ## Example 3:
 
--> Input: 
+* Input: 
 getInputs = () => { const o = {}; return [[o,o],[o,o],[o,o]]; }
 fn = function (a, b) { return ({...a, ...b}); }
--> Output: [{"val":{},"calls":1},{"val":{},"calls":1},{"val":{},"calls":1}]
--> Explanation:
+* Output: [{"val":{},"calls":1},{"val":{},"calls":1},{"val":{},"calls":1}]
+* Explanation:
 Merging two empty objects will always result in an empty object. The 2nd and 3rd third function calls result in a cache-hit. This is because every object passed in is identical.
+
